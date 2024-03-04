@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Infrastructure Services</title>
+    <style>
+        /* Define global background variable */
+        :root {
+            --global-background: linear-gradient(to right, rgba(255, 89, 0, 0.7), rgba(29, 246, 235, 0.511)), url('/QuantumSpace/Global/Background.jpg') center/cover fixed;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: var(--global-background);
+            color: #fff;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        main {
+            backdrop-filter: blur(4px);
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .service-box {
+            width: calc(30% - 20px); /* Adjust container width */
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            color: #fff;
+            font-size: 1.2em; /* Increase font size */
+            transition: box-shadow 0.3s ease; /* Add transition for box shadow */
+            cursor: pointer; /* Change cursor on hover */
+        }
+
+        .service-box:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Glow effect on hover */
+        }
+
+        .selected {
+            border: 3px solid yellow; /* Yellow border for selected container */
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        ul {
+            padding-left: 20px;
+            color: #ccc;
+        }
+
+        footer {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .buy-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #ffcc00;
+        }
+
+        /* Popup window styles */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(30% - 20px); /* Same width as service boxes */
+            padding: 20px;
+            background-color: rgba(8, 7, 7, 0.962);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup-content {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .popup-input {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .popup-button {
+            padding: 10px 20px;
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-button:hover {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cloud Infrastructure Services</h1>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <!-- Service boxes here -->
+            <div class="service-box" onclick="toggleSelection(this)" data-file="cloud_architecture.pdf">
+                <h2>Cloud architecture design and implementation</h2>
+                <ul>
+                    <li>Service details here</li>
+                    <li>Service details here</li>
+                    <li>Service details here</li>
+                </ul>
+            </div>
+
+            <div class="service-box" onclick="toggleSelection(this)" data-file="cloud_migration.pdf">
+                <h2>Cloud migration and deployment</h2>
+                <ul>
+                    <li>Service details here</li>
+                    <li>Service details here</li>
+                    <li>Service details here</li>
+                </ul>
+            </div>
+
+            <div class="service-box" onclick="toggleSelection(this)" data-file="cloud_optimization.pdf">
+                <h2>Cloud optimization and cost management</h2>
+                <ul>
+                    <li>Service details here</li>
+                    <li>Service details here</li>
+                    <li>Service details here</li>
+                </ul>
+            </div>
+
+            <!-- Add more service boxes here -->
+
+        </div>
+    </main>
+
+    <footer>
+        <button class="buy-button" onclick="showSecurityPopup()">Buy Services</button>
+    </footer>
+
+    <!-- Popup window for security code -->
+    <div class="popup-container" id="securityPopup">
+        <div class="popup-content">
+            <h2>Security Code</h2>
+            <input type="password" class="popup-input" id="securityCode" placeholder="Enter security code">
+            <button class="popup-button" onclick="checkSecurityCode()">Submit</button>
+            <button class="popup-button" onclick="closePopup()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle service selection
+        function toggleSelection(element) {
+            // Toggle 'selected' class on clicked service box
+            element.classList.toggle('selected');
+        }
+
+        // Function to show security code popup
+        function showSecurityPopup() {
+            document.getElementById('securityPopup').style.display = 'block';
+        }
+
+        // Function to close the popup window
+        function closePopup() {
+            document.getElementById('securityPopup').style.display = 'none';
+            document.getElementById('securityCode').value = ''; // Clear the security code input
+        }
+
+        // Function to check security code
+        function checkSecurityCode() {
+            var code = document.getElementById('securityCode').value;
+            if (code === '336699') {
+                downloadServices();
+            } else {
+                alert('Check Security code Wrong');
+                document.getElementById('securityCode').value = ''; // Clear the security code input
+            }
+        }
+
+        // Function to download selected services
+        function downloadServices() {
+            var selectedServices = document.querySelectorAll('.selected');
+            if (selectedServices.length === 0) {
+                alert('Please select at least one service.');
+                return;
+            }
+            selectedServices.forEach(service => {
+                var file = service.getAttribute('data-file');
+                downloadFile(file);
+            });
+            closePopup(); // Close the popup after successful download
+        }
+
+        // Function to download file
+        function downloadFile(file) {
+            // Simulate file download (you can replace this with actual download logic)
+            var a = document.createElement('a');
+            a.href = file;
+            a.download = file.split('/').pop(); // Extract file name from URL
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+
+</body>
+</html>
